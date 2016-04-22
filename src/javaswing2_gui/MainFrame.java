@@ -45,6 +45,13 @@ public class MainFrame extends JFrame
     
     mTablePanel.setData(mController.getPeople());
     
+    mTablePanel.setPersonTableListener(new PersonTableListener(){
+    	public void rowDeleted (int row)
+    	{
+    		mController.deletePerson(row);
+    	}
+    });
+    
     setJMenuBar(createMenuBar());
     
     // pass a callback to mToolbar which would be called when buttons are pressed

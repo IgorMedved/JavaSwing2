@@ -87,6 +87,12 @@ public class Controller
 	{
 		mDb.loadFromFile(file);
 	}
+	
+	public void deletePerson(int row)
+	{
+		if (mDb!= null)
+			mDb.deletePerson(row);
+	}
 }
 
 
