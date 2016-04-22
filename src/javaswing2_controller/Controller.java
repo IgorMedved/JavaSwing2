@@ -1,5 +1,7 @@
 package javaswing2_controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javaswing2_gui.FormEvent;
@@ -73,6 +75,17 @@ public class Controller
         mDb.addPerson(person);
         
         
+	}
+	
+	public void saveToFile (File file) throws IOException
+	{
+		mDb.saveToFile(file);
+		
+	}
+	
+	public void loadFromFile(File file) throws IOException
+	{
+		mDb.loadFromFile(file);
 	}
 }
 

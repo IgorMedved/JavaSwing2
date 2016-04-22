@@ -1,7 +1,13 @@
 package javaswing2_model;
 
-public class Person
+import java.io.Serializable;
+
+public class Person implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3514330541820258129L;
 	private static int count = 0;
 	private int mId;
 	
