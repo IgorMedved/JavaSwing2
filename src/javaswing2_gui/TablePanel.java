@@ -1,6 +1,8 @@
 package javaswing2_gui;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -31,9 +33,24 @@ public class TablePanel extends JPanel {
 		
 		mTable.addMouseListener(new MouseAdapter(){
 			@Override
-			public void mousePressed(MouseEvent e) {
-				if(e.getButton() == MouseEvent.BUTTON3);
+			public void mousePressed(MouseEvent e) 
+			{
+				int row  = mTable.rowAtPoint(e.getPoint());
+				
+				mTable.getSelectionModel().setSelectionInterval(row, row);
+				
+				if(e.getButton() == MouseEvent.BUTTON3)
 					mPopup.show(mTable, e.getX(), e.getY());
+			}
+			
+		});
+		
+		removeItem.addActionListener( new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				int row = mTable.getSelectedRow();
+				
 			}
 			
 		});

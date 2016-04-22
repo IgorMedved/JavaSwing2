@@ -1,0 +1,9 @@
+Notes on deleting selected row from a table
+
+Step 1: Create and populate popup menu
+Step 2: addMouseListener to component (JTable)
+		a) make it show popup menu
+		b) make it select the clicked row
+		
+Step 3: add actionListener to menu item
+		and make it do the desired action (delete selected row)
