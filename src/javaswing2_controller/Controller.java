@@ -1,5 +1,7 @@
 package javaswing2_controller;
 
+import java.util.List;
+
 import javaswing2_gui.FormEvent;
 import javaswing2_model.AgeCategory;
 import javaswing2_model.Database;
@@ -10,6 +12,11 @@ import javaswing2_model.Person;
 public class Controller
 {
 	private Database mDb = new Database();
+	
+	public List<Person> getPeople()
+	{
+		return mDb.getPeople();
+	}
 	
 	public void addPerson (FormEvent e)
 	{
