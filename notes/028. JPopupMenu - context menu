@@ -1,0 +1,5 @@
+Notes on context Menu
+
+add JPopMenu to the Panel that contains the component which needs popup menu
+add MouseEventListner to the component (JTable in this tutorial)
+    check that the event is triggered by pressing right mouse button and show the menu

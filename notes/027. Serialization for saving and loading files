@@ -1,0 +1,4 @@
+Notes on serialization
+Make the class containing the information that needs to be saved implement Serializable interface
+use writeObject(File f) and readObject(File f) methods of ObjectOutputStream/ ObjectInputStream
+connect the saveFile nad loadFile methods to appropriate buttons/menu items

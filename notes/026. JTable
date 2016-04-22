@@ -1,0 +1,6 @@
+Notes on using JTable:
+Put Table in JPanel
+create TableModel extends AbstractTableModel
+implement AbstractTableModel methods
+create table headings by overridng getColumnHeading in AbstractTableModel
+Connect Table to controller and underlying database

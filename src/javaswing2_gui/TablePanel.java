@@ -1,9 +1,13 @@
 package javaswing2_gui;
 
 import java.awt.BorderLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
@@ -13,13 +17,26 @@ public class TablePanel extends JPanel {
 	
 	private JTable mTable;
 	private PersonTableModel mTableModel;
+	private JPopupMenu mPopup;
 	
 	
 	public TablePanel()
 	{
 		mTableModel = new PersonTableModel();
-		mTable  = new JTable();
-		mTable.setModel(mTableModel);
+		mTable  = new JTable(mTableModel);
+		mPopup = new JPopupMenu();
+		
+		JMenuItem removeItem = new JMenuItem("Delete row");
+		mPopup.add(removeItem);
+		
+		mTable.addMouseListener(new MouseAdapter(){
+			@Override
+			public void mousePressed(MouseEvent e) {
+				if(e.getButton() == MouseEvent.BUTTON3);
+					mPopup.show(mTable, e.getX(), e.getY());
+			}
+			
+		});
 		
 		setLayout (new BorderLayout());
 		
