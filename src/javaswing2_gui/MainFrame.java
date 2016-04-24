@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.prefs.Preferences;
 
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFileChooser;
@@ -29,6 +30,7 @@ public class MainFrame extends JFrame
   private Controller mController;
   private TablePanel mTablePanel;
   private PrefsDialog mPrefsDialog;
+  private Preferences mPrefs;
   
  
   public MainFrame()
@@ -45,6 +47,7 @@ public class MainFrame extends JFrame
     mController = new Controller();
     mTablePanel = new TablePanel();
     mPrefsDialog = new PrefsDialog(this);
+    mPrefs = Preferences.userRoot().node("db");
     
     mTablePanel.setData(mController.getPeople());
     
@@ -131,6 +134,26 @@ public class MainFrame extends JFrame
 		}
 		  
 	  });
+	  
+	  mPrefsDialog.setListener(new PrefsListener()
+	  {
+
+		@Override
+		public void preferencesSet(PrefsDialogEvent e) 
+		{
+			mPrefs.put("user", e.getUserName());
+			mPrefs.put("password", e.getPassword());
+			mPrefs.putInt("port", e.getConnectionPort());
+		}
+		  
+	  });
+	  
+	  
+	  String user = mPrefs.get("user", "");
+	  String password = mPrefs.get("password", "");
+	  int port = mPrefs.getInt("port", 3306);
+	  
+	  mPrefsDialog.setDefaults(user, password, port);
 	  
 	  menuBar.add(fileMenu);
 	  menuBar.add(windowMenu);
