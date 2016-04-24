@@ -2,6 +2,7 @@ package javaswing2_gui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,7 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 public class PrefsDialog extends JDialog
@@ -19,6 +22,8 @@ public class PrefsDialog extends JDialog
 	private JButton mCancelButton;
 	private JSpinner mPortSpinner;
 	private SpinnerNumberModel mSpinnerModel;
+	private JTextField mUserField;
+	private JPasswordField mPasswordField;
 	
 	public PrefsDialog(JFrame parent)
 	{
@@ -29,12 +34,37 @@ public class PrefsDialog extends JDialog
 		
 		mSpinnerModel = new SpinnerNumberModel(3306, 0, 9999, 1);
 		mPortSpinner = new JSpinner(mSpinnerModel);
+		mUserField = new JTextField(10);
+		mPasswordField = new JPasswordField(10);
+		
+		mPasswordField.setEchoChar('*');
 		
 		setLayout (new GridBagLayout());
 		
 		GridBagConstraints gc = new GridBagConstraints();
 		
 		gc.gridy = 0;
+		/////////////////////////// First row ////////////////
+		
+		gc.gridx = 0;
+		gc.insets = new Insets(10,0,0,0);
+		add (new JLabel("User Name: "), gc);
+		
+		gc.gridx = 1;
+		add (mUserField, gc);
+		
+		/////////////////////////// Next row ////////////////
+		gc.gridy++;
+		gc.gridx = 0;
+		gc.insets = new Insets(0,0,0,0);
+	
+		add (new JLabel("Password: "), gc);
+
+		gc.gridx = 1;
+		add (mPasswordField, gc);
+		
+		/////////////////////////// Next row ////////////////
+		gc.gridy++;
 		gc.gridx = 0;
 		gc.weightx = 1;
 		gc.weighty = 1;
@@ -44,10 +74,14 @@ public class PrefsDialog extends JDialog
 		gc.gridx++;
 		add (mPortSpinner, gc);
 		
+		
 		/////////////////////////// Next row ////////////////
 		
 		gc.gridy++;
+		gc.weighty =4;
 		gc.gridx = 0;
+		gc.insets = new Insets(0,0,10,0);
+		gc.anchor = GridBagConstraints.SOUTH;
 		add (mOkButton, gc);
 		
 		gc.gridx++;
@@ -59,7 +93,11 @@ public class PrefsDialog extends JDialog
 			public void actionPerformed(ActionEvent e)
 			{
 				Integer value = (Integer)mPortSpinner.getValue();
-				System.out.println(value);
+				
+				
+				String user =  mUserField.getText();
+				char[] password = mPasswordField.getPassword();
+				System.out.println(user + ": " + new String(password));
 				
 				PrefsDialog.this.setVisible(false);
 			}
@@ -71,6 +109,7 @@ public class PrefsDialog extends JDialog
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				
 				
 				PrefsDialog.this.setVisible(false);
 			}
