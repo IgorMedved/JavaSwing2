@@ -8,7 +8,14 @@ public class TestDatabase {
 	{
 		System.out.println("Testing Database connection");
 		Database db = new Database();
-		db.connect();
+		try
+		{
+			db.connect();
+		} catch (Exception e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		db.disconnect();
 	}
 
