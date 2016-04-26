@@ -66,4 +66,13 @@ public class Database
 		ois.close();
 	}
 
+	public void connect() {
+		
+	}
+	
+	public void disconnect()
+	{
+		
+	}
+
 }
