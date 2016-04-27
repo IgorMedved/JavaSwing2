@@ -86,6 +86,7 @@ public class Database
 		
 		mCon = DriverManager.getConnection(connectionUrl, "root", "copperhair377");
 		
+		
 		System.out.println("Connected " + mCon);
 	}
 	
