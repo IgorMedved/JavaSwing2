@@ -8,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collections;
@@ -84,7 +86,7 @@ public class Database
 		
 		String connectionUrl = "jdbc:mysql://localhost:3306/swingtest?autoReconnect=true&useSSL=false";
 		
-		mCon = DriverManager.getConnection(connectionUrl, "root", "copperhair377");
+		mCon = DriverManager.getConnection(connectionUrl, "igor", "STUDENT");
 		
 		
 		System.out.println("Connected " + mCon);
@@ -101,6 +103,29 @@ public class Database
 			{
 				System.out.println("Can't close connection");
 			}
+		}
+	}
+	
+	public void save() throws SQLException
+	{
+		String checkSql = "select count(*) as count from people where id=?";
+		
+		PreparedStatement checkStmt = mCon.prepareStatement(checkSql);
+		
+		for (Person person: people)
+		{
+			int id = person.getId();
+			checkStmt.setInt(1,id); // parameterIndex, value 
+			
+			ResultSet checkResult = checkStmt.executeQuery();
+			
+			checkResult.next();
+			
+			int count = checkResult.getInt(1);
+			
+			
+			System.out.println("Count for person with ID " + id + " is " + count);
+			
 		}
 	}
 

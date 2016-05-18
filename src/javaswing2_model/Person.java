@@ -8,7 +8,7 @@ public class Person implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 3514330541820258129L;
-	private static int count = 0;
+	private static int count = 1;
 	private int mId;
 	
 	private String mName;
