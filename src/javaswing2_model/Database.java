@@ -110,10 +110,11 @@ public class Database
 	{
 		String checkSql = "select count(*) as count from people where id=?";
 		String insertSql = "insert into people (id, name, age, employment_status, tax_id, us_citizen, gender, occupation) values (?,?,?,?,?,?,?,?)";
+		String updateSql = "update people set name=?, age=?, employment_status=?, tax_id=?, us_citizen=?, gender=?, occupation=? where id=?";
 		
 		PreparedStatement checkStmt = mCon.prepareStatement(checkSql);
 		PreparedStatement insertStatement = mCon.prepareStatement(insertSql);
-		
+		PreparedStatement updateStatement = mCon.prepareStatement(updateSql);
 		
 		for (Person person: people)
 		{
@@ -154,12 +155,27 @@ public class Database
 			else
 			{
 				System.out.println("Updating person with id: " + id );
+				
+				int col =1;
+				
+				updateStatement.setString(col++, name);
+				updateStatement.setString(col++, age.name());
+				updateStatement.setString(col++, empCat.name());
+				updateStatement.setString(col++, taxId);
+				updateStatement.setBoolean(col++, isCitizen);
+				updateStatement.setString(col++, gender.name());
+				updateStatement.setString(col++, occupation);
+				
+				updateStatement.setInt(col++, id);
+				
+				updateStatement.executeUpdate();
 			}
 			
 			System.out.println("Count for person with ID " + id + " is " + count);
 			
 		}
 		
+		updateStatement.close();
 		insertStatement.close();
 		checkStmt.close();
 	}
