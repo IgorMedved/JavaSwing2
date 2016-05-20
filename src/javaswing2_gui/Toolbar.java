@@ -11,44 +11,44 @@ import javax.swing.JPanel;
 
 public class Toolbar extends JPanel implements ActionListener
 {
-  private JButton mHelloButton;
-  private JButton mGoodbyeButton;
+  private JButton mSaveButton;
+  private JButton mRefreshButton;
   
-  private StringListener mStringListener; 
+  private ToolbarListener mToolbarListener; 
  
   public Toolbar()
   {
     setBorder(BorderFactory.createEtchedBorder());
 	  
-	mHelloButton = new JButton ("Hello");
-    mGoodbyeButton = new JButton ("Goodbye!");
+	mSaveButton = new JButton ("Save");
+    mRefreshButton = new JButton ("Refresh");
     
-    mHelloButton.setMnemonic(KeyEvent.VK_H);
-    mGoodbyeButton.setMnemonic(KeyEvent.VK_G);
+    mSaveButton.setMnemonic(KeyEvent.VK_H);
+    mRefreshButton.setMnemonic(KeyEvent.VK_G);
    
     setLayout (new FlowLayout(FlowLayout.LEFT));
    
-    add (mHelloButton);
-    add (mGoodbyeButton);
+    add (mSaveButton);
+    add (mRefreshButton);
     
-    mHelloButton.addActionListener(this);
-    mGoodbyeButton.addActionListener(this);
+    mSaveButton.addActionListener(this);
+    mRefreshButton.addActionListener(this);
   }
   
   @Override
   public void actionPerformed(ActionEvent e)
   {
-    if (mStringListener!=null)
+    if (mToolbarListener!=null)
     {
       JButton buttonClicked = (JButton)e.getSource();
       
-      if (buttonClicked == mHelloButton)
+      if (buttonClicked == mSaveButton)
       {
-        mStringListener.textEmitted("Hello\n"); 
+        mToolbarListener.saveEventOccurred(); 
       }
-      else if (buttonClicked == (JButton)e.getSource())
+      else if (buttonClicked == mRefreshButton)
       {
-    	  mStringListener.textEmitted("Goodbye!\n");
+    	  mToolbarListener.refreshEventOccurred();
       }
     }
     
@@ -56,9 +56,9 @@ public class Toolbar extends JPanel implements ActionListener
   
   
   // proper way to pass messages between components using interfaces
-  public void setStringListener (StringListener listener)
+  public void setToolbarListener (ToolbarListener listener)
   {
-    mStringListener = listener ;
+    mToolbarListener = listener ;
   }
   
                

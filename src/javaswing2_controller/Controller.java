@@ -2,6 +2,7 @@ package javaswing2_controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javaswing2_gui.FormEvent;
@@ -92,6 +93,26 @@ public class Controller
 	{
 		if (mDb!= null)
 			mDb.deletePerson(row);
+	}
+	
+	public void save() throws SQLException
+	{
+		mDb.save();
+	}
+	
+	public void load() throws SQLException
+	{
+		mDb.load();
+	}
+	
+	public void connect() throws Exception
+	{
+		mDb.connect();
+	}
+	
+	public void disconnect()
+	{
+		mDb.disconnect();
 	}
 }
 
