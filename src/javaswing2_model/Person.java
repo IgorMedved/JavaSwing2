@@ -28,17 +28,35 @@ public class Person implements Serializable
 			boolean uSCitizen, Gender gender)
 	{
 		
-		mName = name;
+		this (count, name, occupation, ageCategory, employmentCategory, taxId, uSCitizen, gender);
+		/*mName = name;
 		mOccupation = occupation;
 		mAgeCategory = ageCategory;
 		mEmploymentCategory = employmentCategory;
 		mTaxId = taxId;
 		mUSCitizen = uSCitizen;
-		mGender = gender;
+		mGender = gender;*/
 		
-		mId = count;
-		count++;
+		//mId = count;
+		//count++;
 	}
+	
+	
+	public Person(int pId, String pName, String pOccupation, AgeCategory pAgeCategory,
+			EmploymentCategory pEmploymentCategory, String pTaxId, boolean pUSCitizen, Gender pGender) {
+		
+		mId = pId;
+		mName = pName;
+		mOccupation = pOccupation;
+		mAgeCategory = pAgeCategory;
+		mEmploymentCategory = pEmploymentCategory;
+		mTaxId = pTaxId;
+		mUSCitizen = pUSCitizen;
+		mGender = pGender;
+		count ++;
+	}
+
+
 	public int getId()
 	{
 		return mId;
@@ -102,6 +120,11 @@ public class Person implements Serializable
 	public void setGender(Gender gender)
 	{
 		mGender = gender;
+	}
+	
+	public String toString()
+	{
+		return mId + " " + mName;
 	}
 	
 	

@@ -28,7 +28,8 @@ public class TestDatabase {
 		db.addPerson (new Person("Sue", "artist", AgeCategory.ADULT, EmploymentCategory.SELF_EMPLOYED, 
 				null, false, Gender.FEMALE));
 		try {
-			db.save();
+			//db.save();
+			db.load();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
