@@ -9,9 +9,9 @@ import java.net.URL;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.JToolBar;
 
-public class Toolbar extends JPanel implements ActionListener
+public class Toolbar extends JToolBar implements ActionListener
 {
   private JButton mSaveButton;
   
@@ -21,12 +21,21 @@ public class Toolbar extends JPanel implements ActionListener
  
   public Toolbar()
   {
-    setBorder(BorderFactory.createEtchedBorder());
+    
 	  
-	mSaveButton = new JButton ("Save");
+	// delete border if you want the toolbar draggable  
+	setBorder(BorderFactory.createEtchedBorder());
+	
+	//setFloatable(true);
+	  
+	mSaveButton = new JButton ();
 	mSaveButton.setIcon(createIcon ("/images/save16.gif"));
-    mRefreshButton = new JButton ("Refresh");
+	mSaveButton.setToolTipText("Save");
+	
+    mRefreshButton = new JButton ();
     mRefreshButton.setIcon(createIcon("/images/refresh16.gif"));
+    mRefreshButton.setToolTipText("Refresh");
+    
     
     mSaveButton.setMnemonic(KeyEvent.VK_H);
     mRefreshButton.setMnemonic(KeyEvent.VK_G);

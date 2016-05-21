@@ -112,7 +112,7 @@ public class MainFrame extends JFrame
    
     add (mTablePanel, BorderLayout.CENTER);
 
-    add (mToolbar, BorderLayout.NORTH);
+    add (mToolbar, BorderLayout.PAGE_START);
     
     add (mFormPanel, BorderLayout.WEST);
    
