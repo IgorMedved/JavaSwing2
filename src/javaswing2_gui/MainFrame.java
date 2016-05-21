@@ -20,6 +20,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 
 import javaswing2_controller.Controller;
@@ -37,6 +38,7 @@ public class MainFrame extends JFrame
   private PrefsDialog mPrefsDialog;
   private Preferences mPrefs;
   private JSplitPane mSplitPane;
+  private JTabbedPane mTabPane;
   
  
   public MainFrame()
@@ -51,13 +53,22 @@ public class MainFrame extends JFrame
     mFileChooser = new JFileChooser();
     mFileChooser.addChoosableFileFilter(new PersonFileFilter());
     mController = new Controller();
+    mTabPane = new JTabbedPane();
     mTablePanel = new TablePanel();
     mPrefsDialog = new PrefsDialog(this);
     mPrefs = Preferences.userRoot().node("db");
-    mSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, mFormPanel, mTablePanel);
+    mSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, mFormPanel, mTabPane);
     
     
     mSplitPane.setOneTouchExpandable(true);
+    
+    
+    mTabPane.addTab("Person Database", mTablePanel);
+    mTabPane.addTab("Messages", mTextPanel);
+    
+    
+    
+    
     mTablePanel.setData(mController.getPeople());
     
     
