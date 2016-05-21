@@ -4,14 +4,17 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.net.URL;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 public class Toolbar extends JPanel implements ActionListener
 {
   private JButton mSaveButton;
+  
   private JButton mRefreshButton;
   
   private ToolbarListener mToolbarListener; 
@@ -21,7 +24,9 @@ public class Toolbar extends JPanel implements ActionListener
     setBorder(BorderFactory.createEtchedBorder());
 	  
 	mSaveButton = new JButton ("Save");
+	mSaveButton.setIcon(createIcon ("/images/save16.gif"));
     mRefreshButton = new JButton ("Refresh");
+    mRefreshButton.setIcon(createIcon("/images/refresh16.gif"));
     
     mSaveButton.setMnemonic(KeyEvent.VK_H);
     mRefreshButton.setMnemonic(KeyEvent.VK_G);
@@ -59,6 +64,18 @@ public class Toolbar extends JPanel implements ActionListener
   public void setToolbarListener (ToolbarListener listener)
   {
     mToolbarListener = listener ;
+  }
+  
+  private ImageIcon createIcon(String path)
+  {
+	  URL url = getClass().getResource(path);
+	  
+	  if (url == null)
+		  System.err.println("Unable to load image: " + path);
+	  
+	  ImageIcon icon = new ImageIcon(url);
+	  
+	  return icon;
   }
   
                
