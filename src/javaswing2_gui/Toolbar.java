@@ -22,8 +22,6 @@ public class Toolbar extends JToolBar implements ActionListener
   public Toolbar()
   {
     
-	  
-	// delete border if you want the toolbar draggable  
 	setBorder(BorderFactory.createEtchedBorder());
 	
 	//setFloatable(true);

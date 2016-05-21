@@ -44,6 +44,7 @@ public class FormPanel extends JPanel implements ActionListener {
 		Dimension dim = getPreferredSize();
 		dim.width = 250;
 		setPreferredSize(dim);
+		setMinimumSize(dim);
 
 		mLblName = new JLabel("Name: ");
 		mLblOccupation = new JLabel("Occupation: ");
