@@ -39,6 +39,7 @@ public class MainFrame extends JFrame
   private Preferences mPrefs;
   private JSplitPane mSplitPane;
   private JTabbedPane mTabPane;
+  private MessagePanel mMessagePanel;
   
  
   public MainFrame()
@@ -56,6 +57,8 @@ public class MainFrame extends JFrame
     mTabPane = new JTabbedPane();
     mTablePanel = new TablePanel();
     mPrefsDialog = new PrefsDialog(this);
+    mMessagePanel = new MessagePanel();
+    
     mPrefs = Preferences.userRoot().node("db");
     mSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, mFormPanel, mTabPane);
     
@@ -64,7 +67,7 @@ public class MainFrame extends JFrame
     
     
     mTabPane.addTab("Person Database", mTablePanel);
-    mTabPane.addTab("Messages", mTextPanel);
+    mTabPane.addTab("Messages", mMessagePanel);
     
     
     
