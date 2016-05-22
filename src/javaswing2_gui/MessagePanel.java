@@ -5,7 +5,10 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeSelectionModel;
 
 public class MessagePanel extends JPanel
 {
@@ -14,6 +17,20 @@ public class MessagePanel extends JPanel
 	public MessagePanel()
 	{
 		mServerTree = new JTree(createTree());
+		
+		mServerTree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+		mServerTree.addTreeSelectionListener(new TreeSelectionListener(){
+
+			@Override
+			public void valueChanged(TreeSelectionEvent pArg0)
+			{
+				DefaultMutableTreeNode node = (DefaultMutableTreeNode) mServerTree.getLastSelectedPathComponent();
+				Object userObject = node.getUserObject();
+				
+				System.out.println(userObject);
+			}
+			
+		});
 		
 		setLayout (new BorderLayout());
 		
